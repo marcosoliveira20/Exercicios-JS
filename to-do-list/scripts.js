@@ -57,11 +57,13 @@ add.onclick = function () {
         for (let tarefa of liTarefas) {
             let tarefaTexto = tarefa.innerText;
             listaDeTarefas.push(tarefaTexto);
-            list.innerHTML += '<li><lable>' + tarefa.innerText + '</lable> <i class="far fa-trash-alt delete"></i></li>';
         }
 
         const tarefasJSON = JSON.stringify(listaDeTarefas);
         localStorage.setItem('tarefas', tarefasJSON);
+
+        list.innerHTML = ''
+        adicionaTarefasSalvas();
         task.value = '';
 
     }
@@ -79,13 +81,15 @@ list.addEventListener('click', deletetask);
 function deletetask(ev) {
     if (ev.target.classList.contains('delete')) {
         ev.target.parentElement.remove();
-        
+
         const liTarefas = list.querySelectorAll('li')
         const listaDeTarefas = [];
         for (let tarefa of liTarefas) {
+            let tarefaTexto = tarefa.innerText;
             listaDeTarefas.push(tarefaTexto);
         }
         const tarefasJSON = JSON.stringify(listaDeTarefas);
+
         localStorage.setItem('tarefas', tarefasJSON);
     }
 }
