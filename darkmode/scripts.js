@@ -1,7 +1,7 @@
 const html = document.querySelector("html")
 const checkbox = document.querySelector("input[name=theme]")
 
-const getStyle = (element, style) => 
+const getStyle = (element, style) =>
     window
         .getComputedStyle(element)
         .getPropertyValue(style)
@@ -21,18 +21,18 @@ const darkMode = {
     colorText: "#B5B5B5"
 }
 
-const transformKey = key => 
+const transformKey = key =>
     "--" + key.replace(/([A-Z])/, "-$1").toLowerCase()
 
 
 const changeColors = (colors) => {
-    Object.keys(colors).map(key => 
-        html.style.setProperty(transformKey(key), colors[key]) 
+    Object.keys(colors).map(key =>
+        html.style.setProperty(transformKey(key), colors[key])
     )
 }
 
 
-checkbox.addEventListener("change", ({target}) => {
+checkbox.addEventListener("change", ({ target }) => {
     target.checked ? changeColors(darkMode) : changeColors(initialColors)
 })
 
@@ -48,9 +48,22 @@ add.onclick = function () {
     if (text == '') {
         alert('Please, write a task!');
     } else {
-        
-        list.innerHTML += `<li><lable>${text}</lable> <i class="far fa-trash-alt delete"></i></li>`;
+
+        const liTarefas = list.querySelectorAll('li')
+        const listaDeTarefas = [];
+        let text = task.value;
+        console.log(text);
+        listaDeTarefas.push(text);
+        for (let tarefa of liTarefas) {
+            let tarefaTexto = tarefa.innerText;
+            listaDeTarefas.push(tarefaTexto);
+            list.innerHTML += '<li><lable>' + tarefa.innerText + '</lable> <i class="far fa-trash-alt delete"></i></li>';
+        }
+
+        const tarefasJSON = JSON.stringify(listaDeTarefas);
+        localStorage.setItem('tarefas', tarefasJSON);
         task.value = '';
+
     }
 
 };
@@ -63,9 +76,59 @@ list.onclick = function (ev) {
 
 list.addEventListener('click', deletetask);
 
-function deletetask (ev){
-    if (ev.target.classList.contains('delete') ) {
+function deletetask(ev) {
+    if (ev.target.classList.contains('delete')) {
         ev.target.parentElement.remove();
+        
+        const liTarefas = list.querySelectorAll('li')
+        const listaDeTarefas = [];
+        for (let tarefa of liTarefas) {
+            listaDeTarefas.push(tarefaTexto);
+        }
+        const tarefasJSON = JSON.stringify(listaDeTarefas);
+        localStorage.setItem('tarefas', tarefasJSON);
     }
 }
 
+function listarTarefas(isAddText) {
+
+    const liTarefas = list.querySelectorAll('li')
+    const listaDeTarefas = [];
+    if (isAddText) {
+        let text = task.innerText;
+        listaDeTarefas.push(text);
+    }
+    for (let tarefa of liTarefas) {
+        let tarefaTexto = tarefa.innerText;
+        listaDeTarefas.push(tarefaTexto);
+        list.innerHTML += '<li><lable>' + tarefa.innerText + '</lable> <i class="far fa-trash-alt delete"></i></li>';
+    }
+
+    const tarefasJSON = JSON.stringify(listaDeTarefas);
+    localStorage.setItem('tarefas', tarefasJSON);
+    task.value = '';
+
+}
+
+// Adcionando local storage
+function criaLi() {
+    const li = document.createElement('li');
+    return li;
+}
+
+function adicionaTarefasSalvas() {
+    const tarefas = localStorage.getItem('tarefas');
+    const listaDeTarefas = JSON.parse(tarefas);
+
+    for (let tarefa of listaDeTarefas) {
+        criaTarefa(tarefa);
+    }
+}
+
+
+function criaTarefa(textoInput) {
+    list.innerHTML += '<li><lable>' + textoInput + '</lable> <i class="far fa-trash-alt delete"></i></li>';
+
+}
+
+adicionaTarefasSalvas();
