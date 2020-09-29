@@ -2,6 +2,7 @@
 
 Exercícios Feitos com Javascript, com a intenção de exercitar todos os conteúdos aprendidos. E assim por a mão na massa pois todos sabemos que a melhor forma de aprender é praticar 
 
+<br>
 
 ## Projetos
 
@@ -39,4 +40,10 @@ Exercícios Feitos com Javascript, com a intenção de exercitar todos os conte�
       <img src="img/to-do-list.gif">
     </ul>
 </details>
+
+<br>
+
+## Próximos projetos
+
+- **Falta Quanto App** - Digamos que você esteja na faculdade e queira saber o quanto falta você tirar para poder ser aprovado em determinada matéria.Ou ainda, digamos que você queira controlar o seu orçamento em quanto gastar com comida,diversão,transporte, hospedagem e compras em uma viagem. Crie uma aplicação que faz isso pra você. É certo que você poderia muito bem utilizar uma planilha de excel, mas ao invés disso, crie um formulário e adicione as validações necessárias e os alertas necessários para você não ser reprovado ou ficar sem dinheiro. <a href="http://programadorobjetivo.co/simples-projetos-para-aprender-javascript/"> Clique aqui</a> para ver o site de onde para ver o site de onde foi tira a ideia 
 
