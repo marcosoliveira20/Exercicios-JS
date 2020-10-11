@@ -97,7 +97,7 @@ function soma(a, b){
     console.log(a + b);
 }
 
-funcao(1);
+soma(1);
 
 // ou 
 
@@ -118,3 +118,39 @@ function('a', 'b', 'c', 'd', 'e', 'f', 'g');
 ```
 
 
+### Retorno de função
+
+- Assim que você usa a palavra return a função é encerrada e retorna o determinado.
+```
+function funcao(){
+    console.log('Parei aqui');
+    return 0;
+    console.log('não cheguei aqui');    
+}
+
+funcao();
+
+```
+
+- Posso ter funções que não retornam nada.
+```
+function funcao(){
+    console.log('Olá mundo');
+} 
+funcao();
+```
+
+- Posso ter funções que retoram qualquer tipo de dado ou até mesmo um função
+
+```
+
+function falaFrase(comeco){
+    function falaResto(resto){
+        return comeco + ' ' + resto;
+    }
+    return falaResto;
+}
+const olaMundo = falaFrase('Olá');
+console.log(olaMundo('mundo!'))
+
+```
